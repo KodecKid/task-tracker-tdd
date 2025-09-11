@@ -1,0 +1,16 @@
+name: Python Tests  # Workflow name
+
+on:
+  push:             # Trigger on push to any branch
+  pull_request:     # Trigger on PRs
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use latest Ubuntu runner
+    steps:
+      - uses: actions/checkout@v4  # Step 1: Check out repo code
+      - uses: actions/setup-python@v5  # Step 2: Install Python
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip  # Step 3: Upgrade pip
+      - run: python -m unittest discover -s tests -v  # Step 4: Run tests
